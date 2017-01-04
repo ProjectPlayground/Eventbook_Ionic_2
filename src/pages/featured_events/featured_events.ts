@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
-import { NavController } from 'ionic-angular';
+import { NavController } from "ionic-angular";
 
-@Component({
-  selector: 'page-about',
-  templateUrl: 'featured_events.html'
-})
-export class AboutPage {
+@Component(
+{
+	selector: "page-featured",
+	templateUrl: "featured_events.html"
+} )
 
-  constructor(public navCtrl: NavController) {
+export class FeaturedEventsPage
+{
+	constructor( public navCtrl: NavController )
+	{
 
-  }
-
+	}
 }

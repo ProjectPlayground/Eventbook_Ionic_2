@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
-import { NavController } from 'ionic-angular';
+import { NavController } from "ionic-angular";
 
-@Component({
-  selector: 'page-home',
-  templateUrl: 'near_events.html'
-})
-export class HomePage {
+@Component(
+{
+	selector: "page-near",
+	templateUrl: "near_events.html"
+} )
 
-  constructor(public navCtrl: NavController) {
+export class NearEventsPage
+{
+	constructor( public navCtrl: NavController )
+	{
 
-  }
-
+	}
 }
