@@ -1,3 +1,5 @@
+$background-transparent: rgba( 255, 255, 255, 0 );
+
 page-login
 {
 	.login-content
@@ -6,17 +8,17 @@ page-login
 
 		ion-row
 		{
-			background: rgba( 255, 255, 255, 0 );
+			background: $background-transparent;
 		}
 
 		ion-col
 		{
-			background: rgba( 255, 255, 255, 0 );
+			background: $background-transparent;
 		}
 
 		ion-list
 		{
-			background: rgba( 255, 255, 255, 0 );
+			background: $background-transparent;
 		}
 
 		.login-button
