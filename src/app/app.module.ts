@@ -1,9 +1,9 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
+import { AboutPage } from '../pages/featured_events/featured_events';
+import { ContactPage } from '../pages/account/account';
+import { HomePage } from '../pages/near_events/near_events';
 import { TabsPage } from '../pages/tabs/tabs';
 
 @NgModule({
