@@ -2,23 +2,25 @@
 	<ion-row>
 		<ion-col></ion-col>
     <ion-col width-67>
-      <img src = "https://maxcdn.icons8.com/Share/icon/Industry//radar1600.png"/>
+      <img src = "assets/images/icon.png"/>
     </ion-col>
     <ion-col></ion-col>
 	</ion-row>
-	<ion-list>
-		<ion-item>
-			<ion-label floating>Username</ion-label>
-			<ion-input type = "text"></ion-input>
-		</ion-item>
+	<form (ngSubmit) = "login()" #registerForm = "ngForm">
+		<ion-list>
+			<ion-item>
+				<ion-label floating>Username</ion-label>
+				<ion-input type = "text"></ion-input>
+			</ion-item>
 
-		<ion-item>
-			<ion-label floating>Password</ion-label>
-			<ion-input type = "password"></ion-input>
-		</ion-item>
+			<ion-item>
+				<ion-label floating>Password</ion-label>
+				<ion-input type = "password"></ion-input>
+			</ion-item>
 
-		<div style = "width: 80%; margin: 0 auto">
-		  <button ion-button block>Login</button>
-		</div>
-	</ion-list>
+			<div style = "width: 80%; margin: 0 auto">
+			  <button type = "submit" ion-button block>Login</button>
+			</div>
+		</ion-list>
+	</form>
 </ion-content>
