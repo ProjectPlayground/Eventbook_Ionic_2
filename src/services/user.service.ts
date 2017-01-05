@@ -26,7 +26,7 @@ export class User
 @Injectable()
 export class UserService
 {
-	private loginURL = "http://localhost:8000/api/users/user";
+	private loginURL = "http://192.168.0.11:8000/api/users/user";
 	private headers = new Headers( { "Content-Type": "application/json" } );
 	currentUser: User;
 
