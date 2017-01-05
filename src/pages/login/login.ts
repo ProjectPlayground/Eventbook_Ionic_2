@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController, LoadingController } from "ionic-angular";
+import { NavController, LoadingController, AlertController } from "ionic-angular";
 
 import { TabsPage } from "../tabs/tabs";
 import { UserService } from "../../services/user.service";
@@ -15,10 +15,10 @@ export class LoginPage
 	credentials = { email: "", password: "" };
 	response: any;
 
-	constructor( public navCtrl: NavController, public loadingCtrl: LoadingController, private userService: UserService )
-	{
-
-	}
+	constructor( public navCtrl: NavController, 
+		public loadingCtrl: LoadingController, 
+		public alertCtrl: AlertController,
+		private userService: UserService ){}
 
 	public login()
 	{
@@ -32,7 +32,15 @@ export class LoginPage
 			if( response.success )
 				this.navCtrl.setRoot( TabsPage );
 			else
-				console.log( response.description );
+			{
+				let alert = this.alertCtrl.create(
+				{
+					title: "Error",
+					subTitle: response.description,
+					buttons: ["OK"]
+				} );
+    			alert.present();
+			}
 			loading.dismiss();
 		} );
 	}
