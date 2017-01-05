@@ -38,13 +38,13 @@ export class UserService
 		return Promise.reject( error.message || error );
 	}
 
-	login( credentials ): Promise<User>
+	login( credentials ): Promise<any>
 	{
 		if( credentials.email === null || credentials.password === null )
 			return this.handleError( "Please insert credentials" );
 		else
 			return this.http.post( this.loginURL, JSON.stringify( { email: credentials.email, password: credentials.password } ), { headers: this.headers } ).toPromise()
-				.then( response => response.json().data )
+				.then( response => response.json() )
 				.catch( this.handleError );
 	}
 

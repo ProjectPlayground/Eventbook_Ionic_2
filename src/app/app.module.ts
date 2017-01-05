@@ -7,6 +7,8 @@ import { AccountPage } from "../pages/account/account";
 import { NearEventsPage } from "../pages/near_events/near_events";
 import { TabsPage } from "../pages/tabs/tabs";
 
+import { UserService } from "../services/user.service";
+
 @NgModule(
 {
     declarations: [
@@ -29,7 +31,7 @@ import { TabsPage } from "../pages/tabs/tabs";
         AccountPage,
         TabsPage
     ],
-    providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }]
+    providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserService]
 } )
 
 export class AppModule {}

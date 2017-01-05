@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
+import { NavController, LoadingController } from "ionic-angular";
 
-import { NavController } from "ionic-angular";
-
-import { TabsPage } from "../tabs/tabs"
+import { TabsPage } from "../tabs/tabs";
+import { UserService } from "../../services/user.service";
 
 @Component(
 {
@@ -12,13 +12,28 @@ import { TabsPage } from "../tabs/tabs"
 
 export class LoginPage
 {
-	constructor( public navCtrl: NavController )
+	credentials = { email: "", password: "" };
+	response: any;
+
+	constructor( public navCtrl: NavController, public loadingCtrl: LoadingController, private userService: UserService )
 	{
 
 	}
 
 	public login()
 	{
-		this.navCtrl.setRoot( TabsPage )
+		let loading = this.loadingCtrl.create(
+		{
+			content: "Please wait..."
+		} );
+		loading.present();
+
+		this.userService.login( this.credentials ).then( response => {
+			if( response.success )
+				this.navCtrl.setRoot( TabsPage );
+			else
+				console.log( response.description );
+			loading.dismiss();
+		} );
 	}
 }
