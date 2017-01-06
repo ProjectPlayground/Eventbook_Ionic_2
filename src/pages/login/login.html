@@ -19,8 +19,17 @@
 			</ion-item>
 
 			<div class = "login-button">
-			  <button type = "submit" ion-button block>Login</button>
+				<button type = "submit" ion-button icon-left block>
+			  		<ion-icon name = "unlock"></ion-icon>
+			  		Login
+				</button>
 			</div>
 		</ion-list>
 	</form>
+
+	<div>
+		<button ion-button clear (click) = "goSignIn()">
+			Create an account
+		</button>
+	</div>
 </ion-content>

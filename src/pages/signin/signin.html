@@ -1,0 +1,43 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Signin</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content class = "sign-content" padding>
+	<form (ngSubmit) = "signin()" #registerForm = "ngForm">
+		<ion-list>
+			<ion-item>
+				<ion-label floating>Name</ion-label>
+				<ion-input type = "text" name = "name" [(ngModel)] = "credentials.name" required></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label floating>Last name</ion-label>
+				<ion-input type = "text" name = "lastName" [(ngModel)] = "credentials.lastName" required></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label floating>Email</ion-label>
+				<ion-input type = "email" name = "email" [(ngModel)] = "credentials.email" required></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label floating>Password</ion-label>
+				<ion-input type = "password" name = "password" [(ngModel)] = "credentials.password" required></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label floating>Confirm password</ion-label>
+				<ion-input type = "password" name = "passwordVerification" [(ngModel)] = "credentials.passwordVerification" required></ion-input>
+			</ion-item>
+
+			<div class = "signin-button">
+				<button type = "submit" ion-button icon-left block>
+			  		<ion-icon name = "unlock"></ion-icon>
+			  		Signin
+				</button>
+			</div>
+		</ion-list>
+	</form>
+</ion-content>

@@ -27,6 +27,7 @@ export class User
 export class UserService
 {
 	private loginURL = "http://192.168.0.11:8000/api/users/user";
+	private signinURL = "http://192.168.0.11:8000/api/users/add-user";
 	private headers = new Headers( { "Content-Type": "application/json" } );
 	currentUser: User;
 
@@ -40,12 +41,16 @@ export class UserService
 
 	login( credentials ): Promise<any>
 	{
-		if( credentials.email === null || credentials.password === null )
-			return this.handleError( "Please insert credentials" );
-		else
-			return this.http.post( this.loginURL, JSON.stringify( { email: credentials.email, password: credentials.password } ), { headers: this.headers } ).toPromise()
-				.then( response => response.json() )
-				.catch( this.handleError );
+		return this.http.post( this.loginURL, JSON.stringify( { email: credentials.email, password: credentials.password } ), { headers: this.headers } ).toPromise()
+			.then( response => response.json() )
+			.catch( this.handleError );
+	}
+
+	signin( credentials ): Promise<any>
+	{
+		return this.http.post( this.signinURL, JSON.stringify( { name: credentials.name, lastName: credentials.lastName, email: credentials.email, password: credentials.password } ), { headers: this.headers } ).toPromise()
+			.then( response => response.json() )
+			.catch( this.handleError );
 	}
 
 	public getUserInfo() : User

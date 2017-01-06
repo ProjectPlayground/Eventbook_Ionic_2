@@ -2,25 +2,24 @@ import { Component } from "@angular/core";
 import { NavController, LoadingController, AlertController } from "ionic-angular";
 
 import { TabsPage } from "../tabs/tabs";
-import { SigninPage } from "../signin/signin";
 import { UserService } from "../../services/user.service";
 
 @Component(
 {
-	selector: "page-login",
-	templateUrl: "login.html"
+	selector: "page-signin",
+	templateUrl: "signin.html"
 } )
 
-export class LoginPage
+export class SigninPage
 {
-	credentials = { email: "", password: "" };
+	credentials = { name: "", lastName: "", email: "", password: "", passwordVerification: "" };
 
 	constructor( public navCtrl: NavController, 
 		public loadingCtrl: LoadingController, 
 		public alertCtrl: AlertController,
 		private userService: UserService ){}
 
-	public login()
+	public signin()
 	{
 		let loading = this.loadingCtrl.create(
 		{
@@ -28,7 +27,7 @@ export class LoginPage
 		} );
 		loading.present();
 
-		this.userService.login( this.credentials ).then( response => {
+		this.userService.signin( this.credentials ).then( response => {
 			if( response.success )
 				this.navCtrl.setRoot( TabsPage );
 			else
@@ -43,10 +42,5 @@ export class LoginPage
 			}
 			loading.dismiss();
 		} );
-	}
-
-	public goSignIn()
-	{
-		this.navCtrl.push( SigninPage );
 	}
 }

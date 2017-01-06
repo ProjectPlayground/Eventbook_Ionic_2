@@ -1,0 +1,30 @@
+$background-transparent: rgba( 255, 255, 255, 0 );
+
+page-signin
+{
+	.signin-content
+	{
+		//background-image: url( "../assets/images/concert.jpg" );
+
+		ion-row
+		{
+			background: $background-transparent;
+		}
+
+		ion-col
+		{
+			background: $background-transparent;
+		}
+
+		ion-list
+		{
+			background: $background-transparent;
+		}
+
+		.sign-button
+		{
+			width: 95%;
+			margin: 0 auto;
+		}
+	}
+}
