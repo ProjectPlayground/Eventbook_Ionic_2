@@ -3,7 +3,7 @@ import { Component } from "@angular/core";
 import { NavController, Platform } from "ionic-angular";
 import { Geolocation, GoogleMapsEvent, GoogleMapsLatLng, GoogleMap, GoogleMapsMarkerOptions, GoogleMapsMarker } from "ionic-native";
 
-import { Event } from "../../services/event.service";
+import { Event, EventService } from "../../services/event.service";
 
 @Component(
 {
@@ -16,17 +16,19 @@ export class NearEventsPage
 	map: GoogleMap;
 	latLng: any;
 
-	constructor( public navCtrl: NavController, private platform: Platform )
+	constructor( public navCtrl: NavController, 
+		private platform: Platform,
+		private eventService: EventService )
 	{
 		this.platform.ready().then( () => {
 			this.getPosition();
 		} );
 	}
 
-	setMarker( coordinate: any, event: Event )
+	setMarker( position: any )
 	{
 		let markerOptions: GoogleMapsMarkerOptions = {
-			position: coordinate,
+			position: position,
 			title: "Mi posición"
 		};
 
@@ -60,7 +62,15 @@ export class NearEventsPage
 		} );
 		
 		this.map.on( GoogleMapsEvent.MAP_READY ).subscribe( () => {
-			console.log( "Map is ready!" );
+			let positionCoords = { latitude: this.latLng.lat, longitude: this.latLng.lng };
+
+			this.eventService.getEvents( positionCoords ).then( response => {
+				for( let i = 0; i < response.events.length; ++i )
+				{
+					let position = new GoogleMapsLatLng( response.events[i].latitude, response.events[i].longitude );
+					this.setMarker( position );
+				}
+			} );
 		} );
 	}
 

@@ -9,6 +9,7 @@ import { NearEventsPage } from "../pages/near_events/near_events";
 import { TabsPage } from "../pages/tabs/tabs";
 
 import { UserService } from "../services/user.service";
+import { EventService } from "../services/event.service";
 
 @NgModule(
 {
@@ -34,7 +35,7 @@ import { UserService } from "../services/user.service";
         AccountPage,
         TabsPage
     ],
-    providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserService]
+    providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserService, EventService]
 } )
 
 export class AppModule {}
