@@ -26,11 +26,11 @@ export class SigninPage
 	{
 		return this.formBuilder.group( 
 		{
-			name: ["", Validators.required],
-			lastName: ["", Validators.required],
-			email: ["", Validators.required],
-			password: ["", Validators.required],
-			passwordConfirmation: ["", Validators.required]
+			name: ["", [Validators.required]],
+			lastName: ["", [Validators.required]],
+			email: ["", [Validators.required]],
+			password: ["", [Validators.required, Validators.minLength( 6 )]],
+			passwordConfirmation: ["", [Validators.required, Validators.minLength( 6 )]]
 		} );
 	}
 
