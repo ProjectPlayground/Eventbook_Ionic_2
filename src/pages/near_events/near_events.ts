@@ -1,7 +1,9 @@
 import { Component } from "@angular/core";
 
 import { NavController, Platform } from "ionic-angular";
-import { Geolocation, GoogleMapsEvent, GoogleMapsLatLng, GoogleMap } from "ionic-native";
+import { Geolocation, GoogleMapsEvent, GoogleMapsLatLng, GoogleMap, GoogleMapsMarkerOptions, GoogleMapsMarker } from "ionic-native";
+
+import { Event } from "../../services/event.service";
 
 @Component(
 {
@@ -11,7 +13,8 @@ import { Geolocation, GoogleMapsEvent, GoogleMapsLatLng, GoogleMap } from "ionic
 
 export class NearEventsPage
 {
-	map: any;
+	map: GoogleMap;
+	latLng: any;
 
 	constructor( public navCtrl: NavController, private platform: Platform )
 	{
@@ -20,12 +23,20 @@ export class NearEventsPage
 		} );
 	}
 
-	loadMap( coordinate: any[] )
+	setMarker( coordinate: any, event: Event )
 	{
-		let longitude = coordinate[0]["longitude"];
-		let latitude = coordinate[0]["latitude"];
-		
-		let location = new GoogleMapsLatLng( latitude, longitude );
+		let markerOptions: GoogleMapsMarkerOptions = {
+			position: coordinate,
+			title: "Mi posición"
+		};
+
+		this.map.addMarker( markerOptions ).then( ( marker: GoogleMapsMarker ) => {
+			marker.showInfoWindow();
+		} );
+	}
+
+	loadMap()
+	{
 		this.map = new GoogleMap( "map", {
 			"backgroundColor": "white",
 			"controls": {
@@ -41,12 +52,12 @@ export class NearEventsPage
 				"zoom": true
 			},
 			"camera": {
-				"latLng": location,
+				"latLng": this.latLng,
 				"tilt": 30,
 				"zoom": 13,
 				"bearing": 50
 			}
-  		} );
+		} );
 		
 		this.map.on( GoogleMapsEvent.MAP_READY ).subscribe( () => {
 			console.log( "Map is ready!" );
@@ -55,13 +66,13 @@ export class NearEventsPage
 
 	getPosition(): any
 	{
-		Geolocation.getCurrentPosition().then( response => {
-			let coordinate = [{
-				"longitude": response.coords.longitude,
-				"latitude": response.coords.latitude
-			}];
+		Geolocation.getCurrentPosition().then( position => {
+			let latitude = position.coords.latitude;
+			let longitude = position.coords.longitude;
+
+			this.latLng = new GoogleMapsLatLng( latitude, longitude );
 			
-			this.loadMap( coordinate );
+			this.loadMap();
 		} );
 	}
 }
