@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild, ElementRef } from "@angular/core";
 
 import { NavController, Platform, ModalController } from "ionic-angular";
 import { Geolocation } from "ionic-native";
@@ -45,18 +45,18 @@ export class NearEventsPage
 
 	loadMap()
 	{
-		let mapDiv = document.getElementById( "map" );
+		let mapElement = document.getElementById( "map" );
 
-		this.map = new google.maps.Map( mapDiv,
+		this.map = new google.maps.Map( mapElement,
 		{
-			center: { lat: this.latLng.latitude, lng: this.latLng.longitude },
-			zoom: 13
+			center: this.latLng,
+			zoom: 15
     	} );
 
-    	google.maps.event.addListenerOnce( this.map, "idle", () => {
+    	/*google.maps.event.addListenerOnce( this.map, "idle", () => {
 			mapDiv.classList.add( "show-map" );
 			google.maps.event.trigger( mapDiv, "resize" );
-		} );
+		} );*/
 	}
 
 	getPosition(): any
@@ -65,9 +65,11 @@ export class NearEventsPage
 			let latitude = position.coords.latitude;
 			let longitude = position.coords.longitude;
 
-			this.latLng = { latitude: latitude, longitude: longitude };
+			this.latLng = new google.maps.LatLng( latitude, longitude );
 			
 			this.loadMap();
+		}, error => {
+
 		} );
 	}
 }
