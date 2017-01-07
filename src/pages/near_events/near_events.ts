@@ -31,16 +31,30 @@ export class NearEventsPage
 		modal.present();
 	}
 
-	setMarker( position: any )
+	addInfoWindow( marker, content )
 	{
-		/*let markerOptions: GoogleMapsMarkerOptions = {
-			position: position,
-			title: "Mi posición"
-		};
+		let infoWindow = new google.maps.InfoWindow(
+		{
+			content: content
+		} );
 
-		this.map.addMarker( markerOptions ).then( ( marker: GoogleMapsMarker ) => {
-			marker.showInfoWindow();
-		} );*/
+		google.maps.event.addListener( marker, "click", () => {
+			infoWindow.open( this.map, marker );
+		} );
+	}
+
+	setMarker( position )
+	{
+		let marker = new google.maps.Marker(
+		{
+			map: this.map,
+			animation: google.maps.Animation.DROP,
+			position: position
+		} );
+ 
+		let content = "<h4>Information!</h4>";          
+ 
+		this.addInfoWindow( marker, content );
 	}
 
 	loadMap()
@@ -51,12 +65,24 @@ export class NearEventsPage
 		{
 			center: this.latLng,
 			zoom: 15
-    	} );
+		} );
 
-    	/*google.maps.event.addListenerOnce( this.map, "idle", () => {
-			mapDiv.classList.add( "show-map" );
-			google.maps.event.trigger( mapDiv, "resize" );
-		} );*/
+		google.maps.event.addListenerOnce( this.map, "idle", () => { 
+			mapElement.classList.add( "show-map" );
+			google.maps.event.trigger( mapElement, "resize" );
+
+			let positionCoords = { latitude: this.latLng.lat(), longitude: this.latLng.lng() };
+			this.eventService.getEvents( positionCoords ).then( response => { 
+				for( let i = 0; i < response.events.length; ++i ) 
+				{ 
+					let position = new google.maps.LatLng( response.events[i].latitude, response.events[i].longitude ); 
+					this.setMarker( position ); 
+				} 
+			} ).catch( response =>
+			{
+
+			} );
+		} ); 
 	}
 
 	getPosition(): any
@@ -68,8 +94,8 @@ export class NearEventsPage
 			this.latLng = new google.maps.LatLng( latitude, longitude );
 			
 			this.loadMap();
-		}, error => {
-
+		} ).catch( response => {
+			
 		} );
 	}
 }

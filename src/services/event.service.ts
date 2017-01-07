@@ -43,7 +43,6 @@ export class EventService
 	getEvents( position ): Promise<any>
 	{
 		let url = `${this.eventsURL}?latitude=${position.latitude}&longitude=${position.longitude}`;
-		console.log( url );
 
 		return this.http.get( url, { headers: this.headers } ).toPromise()
 			.then( response => response.json() )
