@@ -43,7 +43,7 @@
 	"ERROR":
 	{
 		"TITLE": "Error",
-		"USER_DOES_NOT_EXISTS": "El usuario no existe. ¿Desea crear una cuenta?",
+		"USER_DOES_NOT_EXIST": "El usuario no existe. ¿Desea crear una cuenta?",
 		"USER_EXISTS": "El usuario ya existe",
 		"PASSWORD_INCORRECT": "La contraseña es incorrecta",
 		"PASSWORDS_DO_NOT_MATCH": "Las contraseñas no coinciden",

@@ -11,6 +11,9 @@ import { Platform, NavParams, ViewController } from "ionic-angular";
 
 export class FilterPage
 {
+	toggle1 = false;
+	toggle2 = false;
+
 	constructor( private platform: Platform, public viewCtrl: ViewController )
 	{
 		
