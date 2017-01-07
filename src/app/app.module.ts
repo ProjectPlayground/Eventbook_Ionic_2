@@ -9,6 +9,7 @@ import { SigninPage } from "../pages/signin/signin";
 import { FeaturedEventsPage } from "../pages/featured_events/featured_events";
 import { AccountPage } from "../pages/account/account";
 import { NearEventsPage } from "../pages/near_events/near_events";
+import { FilterPage } from "../pages/filter_options/filter_options";
 import { TabsPage } from "../pages/tabs/tabs";
 
 import { UserService } from "../services/user.service";
@@ -26,6 +27,7 @@ export function createTranslateLoader( http: Http )
 		LoginPage,
 		SigninPage,
 		NearEventsPage,
+		FilterPage,
 		FeaturedEventsPage,
 		AccountPage,
 		TabsPage
@@ -45,6 +47,7 @@ export function createTranslateLoader( http: Http )
 		LoginPage,
 		SigninPage,
 		NearEventsPage,
+		FilterPage,
 		FeaturedEventsPage,
 		AccountPage,
 		TabsPage

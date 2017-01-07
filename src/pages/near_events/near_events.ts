@@ -1,9 +1,10 @@
 import { Component } from "@angular/core";
 
-import { NavController, Platform } from "ionic-angular";
+import { NavController, Platform, ModalController } from "ionic-angular";
 import { Geolocation, GoogleMapsEvent, GoogleMapsLatLng, GoogleMap, GoogleMapsMarkerOptions, GoogleMapsMarker } from "ionic-native";
 
 import { Event, EventService } from "../../services/event.service";
+import { FilterPage } from "../filter_options/filter_options";
 
 @Component(
 {
@@ -16,13 +17,18 @@ export class NearEventsPage
 	map: GoogleMap;
 	latLng: any;
 
-	constructor( public navCtrl: NavController, 
-		private platform: Platform,
-		private eventService: EventService )
+	constructor( public navCtrl: NavController, private platform: Platform,
+		public modalCtrl: ModalController, private eventService: EventService )
 	{
 		this.platform.ready().then( () => {
 			this.getPosition();
 		} );
+	}
+
+	openFilterOptions()
+	{
+		let modal = this.modalCtrl.create( FilterPage );
+		modal.present();
 	}
 
 	setMarker( position: any )
