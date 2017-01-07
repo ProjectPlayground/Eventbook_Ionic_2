@@ -18,6 +18,18 @@
 		"SIGNIN": "Registrar",
 		"ADDING_INFORMATION": "Agregando información"
 	},
+	"NEAR_EVENTS":
+	{
+		"TITLE": "Eventos cercanos"
+	},
+	"FEATURED_EVENTS":
+	{
+		"TITLE": "Eventos recomendados"
+	},
+	"ACCOUNT":
+	{
+		"TITLE": "Cuenta"
+	},
 	"WARNING":
 	{
 		"REQUIRED_NAME": "El nombre es necesario",
@@ -35,6 +47,7 @@
 		"PASSWORD_INCORRECT": "La contraseña es incorrecta",
 		"PASSWORDS_DO_NOT_MATCH": "Las contraseñas no coinciden",
 		"CONNECTION": "Error de conexión, por favor verifique su conexión a internet",
+		"NO_EVENTS_IN_CITY": "Aún no hay eventos en tu ciudad",
 		"CANCEL": "Cancelar",
 		"OK": "Aceptar"
 	}
