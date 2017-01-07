@@ -1,6 +1,6 @@
 <ion-header>
 	<ion-navbar>
-		<ion-title>Signin</ion-title>
+		<ion-title>{{ "SIGNIN.TITLE" | translate }}</ion-title>
 	</ion-navbar>
 </ion-header>
 
@@ -9,33 +9,33 @@
 		<ion-list>
 			<ion-item>
 				<ion-icon name = "person" item-left></ion-icon>
-				<ion-input type = "text" placeholder = "Name" formControlName = "name"></ion-input>
+				<ion-input type = "text" placeholder = "{{ 'SIGNIN.NAME' | translate }}" formControlName = "name"></ion-input>
 			</ion-item>
 
 			<ion-item>
 				<ion-icon name = "person" item-left></ion-icon>
-				<ion-input type = "text" placeholder = "Lastname" formControlName = "lastName"></ion-input>
+				<ion-input type = "text" placeholder = "{{ 'SIGNIN.LASTNAME' | translate }}" formControlName = "lastName"></ion-input>
 			</ion-item>
 
 			<ion-item>
 				<ion-icon name = "mail" item-left></ion-icon>
-				<ion-input type = "text" placeholder = "Email" formControlName = "email"></ion-input>
+				<ion-input type = "text" placeholder = "{{ 'SIGNIN.EMAIL' | translate }}" formControlName = "email"></ion-input>
 			</ion-item>
 
 			<ion-item>
 				<ion-icon name = "key" item-left></ion-icon>
-				<ion-input type = "password" placeholder = "Password" formControlName = "password"></ion-input>
+				<ion-input type = "password" placeholder = "{{ 'SIGNIN.PASSWORD' | translate }}" formControlName = "password"></ion-input>
 			</ion-item>
 
 			<ion-item>
 				<ion-icon name = "checkbox" item-left></ion-icon>
-				<ion-input type = "password" placeholder = "Confirm password" formControlName = "passwordConfirmation"></ion-input>
+				<ion-input type = "password" placeholder = "{{ 'SIGNIN.CONFIRM_PASSWORD' | translate }}" formControlName = "passwordConfirmation"></ion-input>
 			</ion-item>
 
 			<div class = "signin-button">
 				<button type = "submit" ion-button icon-left block>
 			  		<ion-icon name = "unlock"></ion-icon>
-			  		Signin
+			  		{{ "SIGNIN.SIGNIN" | translate }}
 				</button>
 			</div>
 		</ion-list>

@@ -1,0 +1,19 @@
+{
+	"LOGIN":
+	{
+		"EMAIL": "Correo electrónico",
+		"PASSWORD": "Contraseña",
+		"LOGIN": "Entrar",
+		"SIGNIN": "Crea una cuenta"
+	},
+	"SIGNIN":
+	{
+		"TITLE": "Registro",
+		"NAME": "Nombre",
+		"LASTNAME": "Apellido",
+		"EMAIL": "Correo electrónico",
+		"PASSWORD": "Contraseña",
+		"CONFIRM_PASSWORD": "Confirmar contraseña",
+		"SIGNIN": "Registrar"
+	}
+}
