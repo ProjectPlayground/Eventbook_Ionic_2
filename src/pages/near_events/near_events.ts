@@ -56,7 +56,7 @@ export class NearEventsPage
 			"camera": {
 				"latLng": this.latLng,
 				"tilt": 30,
-				"zoom": 13,
+				"zoom": 10,
 				"bearing": 50
 			}
 		} );

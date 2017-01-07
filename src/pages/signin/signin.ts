@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { TranslateService } from "ng2-translate";
 import { NavController, LoadingController, AlertController, ToastController } from "ionic-angular";
 
 import { TabsPage } from "../tabs/tabs";
@@ -17,7 +18,8 @@ export class SigninPage
 
 	constructor( public navCtrl: NavController, public loadingCtrl: LoadingController, 
 		public alertCtrl: AlertController, private userService: UserService,
-		public toastCtrl: ToastController, public formBuilder: FormBuilder )
+		public toastCtrl: ToastController, public formBuilder: FormBuilder,
+		private translateService: TranslateService )
 	{
 		this.signinForm = this.createSigninForm();
 	}
@@ -34,8 +36,21 @@ export class SigninPage
 		} );
 	}
 
-	private showToast( message: string )
+	private translateMessage( messageTranslate: string )
 	{
+		let message: string;
+		this.translateService.get( messageTranslate ).subscribe( value => 
+		{
+			message = value;
+		} );
+
+		return message;
+	}
+
+	private showToast( messageTranslate: string )
+	{
+		let message = this.translateMessage( messageTranslate );
+
 		let toast = this.toastCtrl.create(
 		{
     		message: message,
@@ -53,7 +68,7 @@ export class SigninPage
 			{
 				let loading = this.loadingCtrl.create(
 				{
-					content: "Please wait..."
+					content: this.translateMessage( "SIGNIN.ADDING_INFORMATION" )
 				} );
 				loading.present();
 
@@ -64,9 +79,9 @@ export class SigninPage
 					{
 						let alert = this.alertCtrl.create(
 						{
-							title: "Error",
-							subTitle: response.description,
-							buttons: ["OK"]
+							title: this.translateMessage( "ERROR.TITLE" ),
+							subTitle: this.translateMessage( response.translation ),
+							buttons: [this.translateMessage( "ERROR.OK" )]
 						} );
 						alert.present();
 					}
@@ -75,47 +90,47 @@ export class SigninPage
 				{
 					let alert = this.alertCtrl.create(
 					{
-						title: "Error",
-						subTitle: "Connection error",
-						buttons: ["OK"]
+						title: this.translateMessage( "ERROR.TITLE" ),
+						subTitle: this.translateMessage( "ERROR.CONNECTION" ),
+						buttons: [this.translateMessage( "ERROR.OK" )]
 					} );
 					alert.present();
 					loading.dismiss();
 				} );
 			}
 			else
-				this.showToast( "The passwords do not match" );
+				this.showToast( "WARNING.PASSWORDS_DO_NOT_MATCH" );
 		}
 		else if( this.signinForm.get( "name" ).invalid )
 		{
 			if( this.signinForm.get( "name" ).hasError( "required" ) )
-				this.showToast( "The field Name is required" );
+				this.showToast( "WARNING.REQUIRED_NAME" );
 		}
 		else if( this.signinForm.get( "lastName" ).invalid )
 		{
 			if( this.signinForm.get( "lastName" ).hasError( "required" ) )
-				this.showToast( "The field LastName is required" );
+				this.showToast( "WARNING.REQUIRED_LASTNAME" );
 		}
 		else if( this.signinForm.get( "email" ).invalid )
 		{
 			if( this.signinForm.get( "email" ).hasError( "required" ) )
-				this.showToast( "The field Email is required" );
+				this.showToast( "WARNING.REQUIRED_EMAIL" );
 			else if( this.signinForm.get( "email" ).hasError( "pattern" ) )
-				this.showToast( "The Email is invalid" );
+				this.showToast( "WARNING.INVALID_EMAIL" );
 		}
 		else if( this.signinForm.get( "password" ).invalid )
 		{
 			if( this.signinForm.get( "password" ).hasError( "required" ) )
-				this.showToast( "The field Password is required" );
+				this.showToast( "WARNING.REQUIRED_PASSWORD" );
 			else if( this.signinForm.get( "password" ).hasError( "minlength" ) )
-				this.showToast( "The minimum length Password is 6 characters" );
+				this.showToast( "WARNING.MINLENGTH_PASSWORD" );
 		}
 		else if( this.signinForm.get( "passwordConfirmation" ).invalid )
 		{
 			if( this.signinForm.get( "passwordConfirmation" ).hasError( "required" ) )
-				this.showToast( "The field Confirm Password is required" );
+				this.showToast( "WARNING.REQUIRED_PASSWORD" );
 			else if( this.signinForm.get( "passwordConfirmation" ).hasError( "minlength" ) )
-				this.showToast( "The minimum length Confirm Password is 6 characters" );
+				this.showToast( "WARNING.MINLENGTH_PASSWORD" );
 		}
 	}
 }

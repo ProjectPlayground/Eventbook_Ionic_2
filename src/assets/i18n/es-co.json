@@ -15,19 +15,27 @@
 		"EMAIL": "Correo electrónico",
 		"PASSWORD": "Contraseña",
 		"CONFIRM_PASSWORD": "Confirmar contraseña",
-		"SIGNIN": "Registrar"
+		"SIGNIN": "Registrar",
+		"ADDING_INFORMATION": "Agregando información"
 	},
 	"WARNING":
 	{
-		"REQUIRED_EMAIL": "El correo electrónico es requerido",
-		"REQUIRED_PASSWORD": "La contraseña es requerida",
+		"REQUIRED_NAME": "El nombre es necesario",
+		"REQUIRED_LASTNAME": "El apellido es necesario",
+		"REQUIRED_EMAIL": "El correo electrónico es necesario",
+		"REQUIRED_PASSWORD": "La contraseña es necesaria",
 		"INVALID_EMAIL": "El correo electrónico es inválido",
 		"MINLENGTH_PASSWORD": "La longitud mínima de la contraseña es de 6 caracteres"
 	},
 	"ERROR":
 	{
 		"TITLE": "Error",
+		"USER_DOES_NOT_EXISTS": "El usuario no existe. ¿Desea crear una cuenta?",
+		"USER_EXISTS": "El usuario ya existe",
+		"PASSWORD_INCORRECT": "La contraseña es incorrecta",
+		"PASSWORDS_DO_NOT_MATCH": "Las contraseñas no coinciden",
 		"CONNECTION": "Error de conexión, por favor verifique su conexión a internet",
+		"CANCEL": "Cancelar",
 		"OK": "Aceptar"
 	}
 }

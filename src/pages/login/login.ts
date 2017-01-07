@@ -71,6 +71,25 @@ export class LoginPage
 			this.userService.login( this.loginForm.value ).then( response => {
 				if( response.success )
 					this.navCtrl.setRoot( TabsPage );
+				else if( response.error === 2 )
+				{
+					let alert = this.alertCtrl.create(
+					{
+						title: this.translateMessage( "ERROR.TITLE" ),
+						subTitle: this.translateMessage( response.translation ),
+						buttons: [
+						{
+							text: this.translateMessage( "ERROR.CANCEL" )
+						},
+						{
+							text: this.translateMessage( "ERROR.OK" ),
+							handler: () => {
+								this.goSignIn();
+							}
+						}]
+					} );
+					alert.present();
+				}
 				else
 				{
 					let alert = this.alertCtrl.create(
