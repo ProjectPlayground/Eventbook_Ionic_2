@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 
 import { NavController, Platform, ModalController } from "ionic-angular";
-import { Geolocation, GoogleMapsEvent, GoogleMapsLatLng, GoogleMap, GoogleMapsMarkerOptions, GoogleMapsMarker } from "ionic-native";
+import { Geolocation } from "ionic-native";
 
 import { Event, EventService } from "../../services/event.service";
 import { FilterPage } from "../filter_options/filter_options";
@@ -14,7 +14,7 @@ import { FilterPage } from "../filter_options/filter_options";
 
 export class NearEventsPage
 {
-	map: GoogleMap;
+	map: any;
 	latLng: any;
 
 	constructor( public navCtrl: NavController, private platform: Platform,
@@ -33,50 +33,29 @@ export class NearEventsPage
 
 	setMarker( position: any )
 	{
-		let markerOptions: GoogleMapsMarkerOptions = {
+		/*let markerOptions: GoogleMapsMarkerOptions = {
 			position: position,
 			title: "Mi posición"
 		};
 
 		this.map.addMarker( markerOptions ).then( ( marker: GoogleMapsMarker ) => {
 			marker.showInfoWindow();
-		} );
+		} );*/
 	}
 
 	loadMap()
 	{
-		this.map = new GoogleMap( "map", {
-			"backgroundColor": "white",
-			"controls": {
-				"compass": true,
-				"myLocationButton": true,
-				"indoorPicker": true,
-				"zoom": true,
-			},
-			"gestures": {
-				"scroll": true,
-				"tilt": true,
-				"rotate": true,
-				"zoom": true
-			},
-			"camera": {
-				"latLng": this.latLng,
-				"tilt": 30,
-				"zoom": 13,
-				"bearing": 50
-			}
-		} );
-		
-		this.map.on( GoogleMapsEvent.MAP_READY ).subscribe( () => {
-			let positionCoords = { latitude: this.latLng.lat, longitude: this.latLng.lng };
+		let mapDiv = document.getElementById( "map" );
 
-			this.eventService.getEvents( positionCoords ).then( response => {
-				for( let i = 0; i < response.events.length; ++i )
-				{
-					let position = new GoogleMapsLatLng( response.events[i].latitude, response.events[i].longitude );
-					this.setMarker( position );
-				}
-			} );
+		this.map = new google.maps.Map( mapDiv,
+		{
+			center: { lat: this.latLng.latitude, lng: this.latLng.longitude },
+			zoom: 13
+    	} );
+
+    	google.maps.event.addListenerOnce( this.map, "idle", () => {
+			mapDiv.classList.add( "show-map" );
+			google.maps.event.trigger( mapDiv, "resize" );
 		} );
 	}
 
@@ -86,7 +65,7 @@ export class NearEventsPage
 			let latitude = position.coords.latitude;
 			let longitude = position.coords.longitude;
 
-			this.latLng = new GoogleMapsLatLng( latitude, longitude );
+			this.latLng = { latitude: latitude, longitude: longitude };
 			
 			this.loadMap();
 		} );
