@@ -4,7 +4,8 @@
 		"EMAIL": "Correo electrónico",
 		"PASSWORD": "Contraseña",
 		"LOGIN": "Entrar",
-		"SIGNIN": "Crea una cuenta"
+		"SIGNIN": "Crea una cuenta",
+		"VERIFYING_CREDENTIALS": "Verificando..."
 	},
 	"SIGNIN":
 	{
@@ -15,5 +16,18 @@
 		"PASSWORD": "Contraseña",
 		"CONFIRM_PASSWORD": "Confirmar contraseña",
 		"SIGNIN": "Registrar"
+	},
+	"WARNING":
+	{
+		"REQUIRED_EMAIL": "El correo electrónico es requerido",
+		"REQUIRED_PASSWORD": "La contraseña es requerida",
+		"INVALID_EMAIL": "El correo electrónico es inválido",
+		"MINLENGTH_PASSWORD": "La longitud mínima de la contraseña es de 6 caracteres"
+	},
+	"ERROR":
+	{
+		"TITLE": "Error",
+		"CONNECTION": "Error de conexión, por favor verifique su conexión a internet",
+		"OK": "Aceptar"
 	}
 }
