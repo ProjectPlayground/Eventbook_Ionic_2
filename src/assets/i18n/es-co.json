@@ -20,7 +20,8 @@
 	},
 	"NEAR_EVENTS":
 	{
-		"TITLE": "Eventos cercanos"
+		"TITLE": "Eventos cercanos",
+		"FILTER": "Filtrar"
 	},
 	"FEATURED_EVENTS":
 	{
