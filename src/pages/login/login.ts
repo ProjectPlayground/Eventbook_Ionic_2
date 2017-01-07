@@ -36,11 +36,11 @@ export class LoginPage
 	{
 		let toast = this.toastCtrl.create(
 		{
-    		message: message,
-      		duration: 3000,
-      		position: "top"
-    	} );
-    	toast.present();
+			message: message,
+			duration: 3000,
+			position: "top"
+		} );
+		toast.present();
 	}
 
 	public login()
