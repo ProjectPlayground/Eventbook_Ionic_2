@@ -64,7 +64,16 @@ export class NearEventsPage
 		this.map = new google.maps.Map( mapElement,
 		{
 			center: this.latLng,
-			zoom: 15
+			zoom: 13,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			tilt: 30
+		} );
+
+		let marker = new google.maps.Marker(
+		{
+			position: this.latLng,
+			icon: "assets/images/blue-circle.png",
+			map: this.map
 		} );
 
 		google.maps.event.addListenerOnce( this.map, "idle", () => { 
@@ -95,7 +104,7 @@ export class NearEventsPage
 			
 			this.loadMap();
 		} ).catch( response => {
-			
+
 		} );
 	}
 }
