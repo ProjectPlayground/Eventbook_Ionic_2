@@ -14,9 +14,33 @@
 
 <ion-content padding>
 	<ion-list>
+		<ion-list-header>
+			Tipo
+		</ion-list-header>
 		<ion-item *ngFor = "let typeOption of typeOptions">
 			<ion-label>{{ typeOption.label }}</ion-label>
 			<ion-toggle [(ngModel)] = "typeOption.filter"></ion-toggle>
+		</ion-item>
+
+		<ion-list-header>
+			Distancia
+		</ion-list-header>
+		<ion-item>
+			<ion-label>Distancia</ion-label>
+			<ion-select [(ngModel)] = "gaming">
+				<ion-option value = "one">1 Km</ion-option>
+				<ion-option value = "three">3 Km</ion-option>
+				<ion-option value = "five">5 Km</ion-option>
+				<ion-option value = "ten">10 Km</ion-option>
+			</ion-select>
+		</ion-item>
+
+		<ion-list-header>
+			Fecha
+		</ion-list-header>
+		<ion-item>
+			<ion-label>Día del evento</ion-label>
+			<ion-datetime displayFormat = "MM/DD/YYYY" [(ngModel)] = "timeStarts"></ion-datetime>
 		</ion-item>
 	</ion-list>
 </ion-content>

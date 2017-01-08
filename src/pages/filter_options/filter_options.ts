@@ -11,6 +11,9 @@ import { Platform, NavParams, ViewController } from "ionic-angular";
 
 export class FilterPage
 {
+	timeStarts: any;
+	gaming: any;
+
 	typeOptions = [{
 		label: "Concert",
 		filter: true,
