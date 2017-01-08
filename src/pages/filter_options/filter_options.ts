@@ -11,13 +11,33 @@ import { Platform, NavParams, ViewController } from "ionic-angular";
 
 export class FilterPage
 {
-	toggle1 = false;
-	toggle2 = false;
+	typeOptions = [{
+		label: "Concert",
+		filter: true,
+	},
+	{
+		label: "Sport",
+		filter: true,
+	},
+	{
+		label: "Cinema",
+		filter: true,
+	},
+	{
+		label: "Theater",
+		filter: true,
+	},
+	{
+		label: "Programming",
+		filter: true,
+	},
+	{
+		label: "Other",
+		filter: true,
+	}];
 
 	constructor( private platform: Platform, public viewCtrl: ViewController )
-	{
-		
-	}
+	{}
 
 	dismiss()
 	{

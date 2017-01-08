@@ -14,13 +14,9 @@
 
 <ion-content padding>
 	<ion-list>
-		<ion-item>
-			<ion-label>Sam</ion-label>
-			<ion-toggle [(ngModel)] = "toggle1"></ion-toggle>
-		</ion-item>
-		<ion-item>
-			<ion-label>Sam</ion-label>
-			<ion-toggle [(ngModel)] = "toggle2"></ion-toggle>
+		<ion-item *ngFor = "let typeOption of typeOptions">
+			<ion-label>{{ typeOption.label }}</ion-label>
+			<ion-toggle [(ngModel)] = "typeOption.filter"></ion-toggle>
 		</ion-item>
 	</ion-list>
 </ion-content>
