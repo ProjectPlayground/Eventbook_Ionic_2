@@ -19,6 +19,8 @@ export class NearEventsPage
 	latLng: any;
 	modal: any;
 
+	eventDate: string = new Date().toISOString();
+	distance: number = 1;
 	typeOptions = [{
 		label: "Concert",
 		value: "CO",
@@ -76,9 +78,12 @@ export class NearEventsPage
 
 	openFilterOptions()
 	{
-		this.modal = this.modalCtrl.create( FilterPage, { typeOptions: this.typeOptions } );
+		this.modal = this.modalCtrl.create( FilterPage, { typeOptions: this.typeOptions, distance: this.distance, date: this.eventDate } );
 		this.modal.onDidDismiss( data => {
 			this.typeOptions = data.typeOptions;
+			this.distance = data.distance;
+			this.eventDate = data.date;
+			
 			this.eventService.eventsFilter = data.events;
 			this.drawMarkers();
 		} );

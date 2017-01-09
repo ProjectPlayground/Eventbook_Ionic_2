@@ -12,14 +12,16 @@ import { EventService } from "../../services/event.service";
 
 export class FilterPage
 {
-	eventDate: string = new Date().toISOString();
-	distance: number = 1;
+	eventDate: string;
+	distance: number;
 	typeOptions = new Array();
 
 	constructor( private platform: Platform, public viewCtrl: ViewController,
 		private params: NavParams, private eventService: EventService )
 	{
 		this.typeOptions = params.get( "typeOptions" );
+		this.distance = params.get( "distance" );
+		this.eventDate = params.get( "date" );
 	}
 
 	dismiss()
@@ -38,6 +40,6 @@ export class FilterPage
 				--i;
 			}
 
-		this.viewCtrl.dismiss( { typeOptions: this.typeOptions, events: events } );
+		this.viewCtrl.dismiss( { typeOptions: this.typeOptions, distance: this.distance, date: this.eventDate, events: events } );
 	}
 }
