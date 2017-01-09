@@ -16,6 +16,7 @@ export class NearEventsPage
 {
 	map: any;
 	latLng: any;
+	modal: any;
 
 	constructor( public navCtrl: NavController, private platform: Platform,
 		public modalCtrl: ModalController, private eventService: EventService )
@@ -27,8 +28,8 @@ export class NearEventsPage
 
 	openFilterOptions()
 	{
-		let modal = this.modalCtrl.create( FilterPage );
-		modal.present();
+		this.modal = this.modalCtrl.create( FilterPage );
+		this.modal.present();
 	}
 
 	addInfoWindow( marker, content )

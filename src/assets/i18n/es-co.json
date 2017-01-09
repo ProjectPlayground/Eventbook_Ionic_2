@@ -23,6 +23,19 @@
 		"TITLE": "Eventos cercanos",
 		"FILTER": "Filtrar"
 	},
+	"FILTER_OPTIONS":
+	{
+		"TITLE": "Filtrar",
+		"CLOSE": "Cerrar",
+		"TYPES": "Tipos",
+		"DISTANCE": "Distancia",
+		"DISTANCE_ONE": "1 Km",
+		"DISTANCE_THREE": "3 Km",
+		"DISTANCE_FIVE": "5 Km",
+		"DISTANCE_TEN": "10 Km",
+		"DATE": "Fecha",
+		"EVENT_DATE": "Día del evento"
+	},
 	"FEATURED_EVENTS":
 	{
 		"TITLE": "Eventos recomendados"

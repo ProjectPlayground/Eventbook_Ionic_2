@@ -1,11 +1,11 @@
 <ion-header>
 	<ion-toolbar>
 		<ion-title>
-			{{ "NEAR_EVENTS.FILTER" | translate }}
+			{{ "FILTER_OPTIONS.TITLE" | translate }}
 		</ion-title>
 		<ion-buttons start>
 			<button ion-button (click) = "dismiss()">
-				<span color = "primary" showWhen = "ios">Cancel</span>
+				<span color = "primary" showWhen = "ios">{{ "FILTER_OPTIONS.CLOSE" | translate }}</span>
 				<ion-icon name = "md-close" showWhen = "android,windows"></ion-icon>
 			</button>
 		</ion-buttons>
@@ -15,7 +15,7 @@
 <ion-content padding>
 	<ion-list>
 		<ion-list-header>
-			Tipo
+			{{ "FILTER_OPTIONS.TYPES" | translate }}
 		</ion-list-header>
 		<ion-item *ngFor = "let typeOption of typeOptions">
 			<ion-label>{{ typeOption.label }}</ion-label>
@@ -23,24 +23,24 @@
 		</ion-item>
 
 		<ion-list-header>
-			Distancia
+			{{ "FILTER_OPTIONS.DISTANCE" | translate }}
 		</ion-list-header>
 		<ion-item>
-			<ion-label>Distancia</ion-label>
-			<ion-select [(ngModel)] = "gaming">
-				<ion-option value = "one">1 Km</ion-option>
-				<ion-option value = "three">3 Km</ion-option>
-				<ion-option value = "five">5 Km</ion-option>
-				<ion-option value = "ten">10 Km</ion-option>
+			<ion-label>{{ "FILTER_OPTIONS.DISTANCE" | translate }}</ion-label>
+			<ion-select [(ngModel)] = "distance">
+				<ion-option value = "one">{{ "FILTER_OPTIONS.DISTANCE_ONE" | translate }}</ion-option>
+				<ion-option value = "three">{{ "FILTER_OPTIONS.DISTANCE_THREE" | translate }}</ion-option>
+				<ion-option value = "five">{{ "FILTER_OPTIONS.DISTANCE_FIVE" | translate }}</ion-option>
+				<ion-option value = "ten">{{ "FILTER_OPTIONS.DISTANCE_TEN" | translate }}</ion-option>
 			</ion-select>
 		</ion-item>
 
 		<ion-list-header>
-			Fecha
+			{{ "FILTER_OPTIONS.DATE" | translate }}
 		</ion-list-header>
 		<ion-item>
-			<ion-label>Día del evento</ion-label>
-			<ion-datetime displayFormat = "MM/DD/YYYY" [(ngModel)] = "timeStarts"></ion-datetime>
+			<ion-label>{{ "FILTER_OPTIONS.EVENT_DATE" | translate }}</ion-label>
+			<ion-datetime displayFormat = "MM/DD/YYYY" [(ngModel)] = "eventDate"></ion-datetime>
 		</ion-item>
 	</ion-list>
 </ion-content>
