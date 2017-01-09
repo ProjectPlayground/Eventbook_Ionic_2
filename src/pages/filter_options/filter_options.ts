@@ -11,7 +11,7 @@ import { Platform, NavParams, ViewController } from "ionic-angular";
 
 export class FilterPage
 {
-	eventDate: any;
+	eventDate: String = new Date().toISOString();
 	distance: any;
 
 	typeOptions = [{
@@ -44,6 +44,9 @@ export class FilterPage
 
 	dismiss()
 	{
+		console.log( this.typeOptions );
+		console.log( this.distance );
+		console.log( this.eventDate );
 		this.viewCtrl.dismiss();
 	}
 }

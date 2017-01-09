@@ -28,10 +28,10 @@
 		<ion-item>
 			<ion-label>{{ "FILTER_OPTIONS.DISTANCE" | translate }}</ion-label>
 			<ion-select [(ngModel)] = "distance">
-				<ion-option value = "one">{{ "FILTER_OPTIONS.DISTANCE_ONE" | translate }}</ion-option>
-				<ion-option value = "three">{{ "FILTER_OPTIONS.DISTANCE_THREE" | translate }}</ion-option>
-				<ion-option value = "five">{{ "FILTER_OPTIONS.DISTANCE_FIVE" | translate }}</ion-option>
-				<ion-option value = "ten">{{ "FILTER_OPTIONS.DISTANCE_TEN" | translate }}</ion-option>
+				<ion-option value = "1">{{ "FILTER_OPTIONS.DISTANCE_ONE" | translate }}</ion-option>
+				<ion-option value = "3">{{ "FILTER_OPTIONS.DISTANCE_THREE" | translate }}</ion-option>
+				<ion-option value = "5">{{ "FILTER_OPTIONS.DISTANCE_FIVE" | translate }}</ion-option>
+				<ion-option value = "10">{{ "FILTER_OPTIONS.DISTANCE_TEN" | translate }}</ion-option>
 			</ion-select>
 		</ion-item>
 
@@ -40,7 +40,7 @@
 		</ion-list-header>
 		<ion-item>
 			<ion-label>{{ "FILTER_OPTIONS.EVENT_DATE" | translate }}</ion-label>
-			<ion-datetime displayFormat = "MM/DD/YYYY" [(ngModel)] = "eventDate"></ion-datetime>
+			<ion-datetime displayFormat = "DD/MM/YYYY" min = "{{ eventDate }}" max = "2020-12-31" [(ngModel)] = "eventDate"></ion-datetime>
 		</ion-item>
 	</ion-list>
 </ion-content>
