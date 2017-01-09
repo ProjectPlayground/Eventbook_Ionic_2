@@ -14,41 +14,13 @@ export class FilterPage
 {
 	eventDate: string = new Date().toISOString();
 	distance: number = 1;
-
-	typeOptions = [{
-		label: "Concert",
-		value: "CO",
-		filter: true,
-	},
-	{
-		label: "Sport",
-		value: "SP",
-		filter: true,
-	},
-	{
-		label: "Cinema",
-		value: "CI",
-		filter: true,
-	},
-	{
-		label: "Theater",
-		value: "TH",
-		filter: true,
-	},
-	{
-		label: "Programming",
-		value: "PR",
-		filter: true,
-	},
-	{
-		label: "Other",
-		value: "OT",
-		filter: true,
-	}];
+	typeOptions = new Array();
 
 	constructor( private platform: Platform, public viewCtrl: ViewController,
-		private eventService: EventService )
-	{}
+		private params: NavParams, private eventService: EventService )
+	{
+		this.typeOptions = params.get( "typeOptions" );
+	}
 
 	dismiss()
 	{
@@ -66,6 +38,6 @@ export class FilterPage
 				--i;
 			}
 
-		this.viewCtrl.dismiss( events );
+		this.viewCtrl.dismiss( { typeOptions: this.typeOptions, events: events } );
 	}
 }

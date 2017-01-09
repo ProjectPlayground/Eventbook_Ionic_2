@@ -19,6 +19,37 @@ export class NearEventsPage
 	latLng: any;
 	modal: any;
 
+	typeOptions = [{
+		label: "Concert",
+		value: "CO",
+		filter: true,
+	},
+	{
+		label: "Sport",
+		value: "SP",
+		filter: true,
+	},
+	{
+		label: "Cinema",
+		value: "CI",
+		filter: true,
+	},
+	{
+		label: "Theater",
+		value: "TH",
+		filter: true,
+	},
+	{
+		label: "Programming",
+		value: "PR",
+		filter: true,
+	},
+	{
+		label: "Other",
+		value: "OT",
+		filter: true,
+	}];
+
 	constructor( public navCtrl: NavController, private platform: Platform,
 		public modalCtrl: ModalController, private eventService: EventService )
 	{
@@ -45,9 +76,10 @@ export class NearEventsPage
 
 	openFilterOptions()
 	{
-		this.modal = this.modalCtrl.create( FilterPage );
-		this.modal.onDidDismiss( events => {
-			this.eventService.eventsFilter = events;
+		this.modal = this.modalCtrl.create( FilterPage, { typeOptions: this.typeOptions } );
+		this.modal.onDidDismiss( data => {
+			this.typeOptions = data.typeOptions;
+			this.eventService.eventsFilter = data.events;
 			this.drawMarkers();
 		} );
 		this.modal.present();
