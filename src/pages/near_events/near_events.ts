@@ -23,34 +23,41 @@ export class NearEventsPage
 	distance: number = 1;
 	typeOptions = [{
 		label: "Concert",
+		icon: "musical-notes",
 		value: "CO",
 		filter: true,
 	},
 	{
 		label: "Sport",
+		icon: "bicycle",
 		value: "SP",
 		filter: true,
 	},
 	{
 		label: "Cinema",
+		icon: "film",
 		value: "CI",
 		filter: true,
 	},
 	{
 		label: "Theater",
+		icon: "body",
 		value: "TH",
 		filter: true,
 	},
 	{
 		label: "Programming",
+		icon: "code",
 		value: "PR",
 		filter: true,
 	},
 	{
 		label: "Other",
+		icon: "easel",
 		value: "OT",
 		filter: true,
 	}];
+	filterOptions = { types: true, distance: true, date: true };
 
 	constructor( public navCtrl: NavController, private platform: Platform,
 		public modalCtrl: ModalController, private eventService: EventService )
@@ -78,11 +85,12 @@ export class NearEventsPage
 
 	openFilterOptions()
 	{
-		this.modal = this.modalCtrl.create( FilterPage, { typeOptions: this.typeOptions, distance: this.distance, date: this.eventDate } );
+		this.modal = this.modalCtrl.create( FilterPage, { filterOptions: this.filterOptions, typeOptions: this.typeOptions, distance: this.distance, date: this.eventDate } );
 		this.modal.onDidDismiss( data => {
 			this.typeOptions = data.typeOptions;
 			this.distance = data.distance;
 			this.eventDate = data.date;
+			this.filterOptions = data.filterOptions;
 			
 			this.eventService.eventsFilter = data.events;
 			this.drawMarkers();

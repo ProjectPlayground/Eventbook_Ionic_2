@@ -15,10 +15,12 @@ export class FilterPage
 	eventDate: string;
 	distance: number;
 	typeOptions = new Array();
+	filterOptions: any;
 
 	constructor( private platform: Platform, public viewCtrl: ViewController,
 		private params: NavParams, private eventService: EventService )
 	{
+		this.filterOptions = params.get( "filterOptions" );
 		this.typeOptions = params.get( "typeOptions" );
 		this.distance = params.get( "distance" );
 		this.eventDate = params.get( "date" );
@@ -40,6 +42,6 @@ export class FilterPage
 				--i;
 			}
 
-		this.viewCtrl.dismiss( { typeOptions: this.typeOptions, distance: this.distance, date: this.eventDate, events: events } );
+		this.viewCtrl.dismiss( { filterOptions: this.filterOptions, typeOptions: this.typeOptions, distance: this.distance, date: this.eventDate, events: events } );
 	}
 }
