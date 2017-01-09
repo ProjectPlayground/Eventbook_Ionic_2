@@ -12,16 +12,18 @@ export class Event
 	finishDateTime: Date;
 	latitude: number;
 	longitude: number;
+	cityId: number;
 
-	constructor( id: number, name: string, type: string, startDateTime: Date, finishDateTime: Date,	latitude: number, longitude: number )
+	constructor( event: any )
 	{
-		this.id = id;
-		this.name = name;
-		this.type = type;
-		this.startDateTime = startDateTime;
-		this.finishDateTime = finishDateTime;
-		this.latitude = latitude;
-		this.longitude = longitude;
+		this.id = event.id;
+		this.name = event.name;
+		this.type = event.type;
+		this.startDateTime = event.startDateTime;
+		this.finishDateTime = event.finishDateTime;
+		this.latitude = event.latitude;
+		this.longitude = event.longitude;
+		this.cityId = event.cityId;
 	}
 }
 
@@ -30,7 +32,9 @@ export class EventService
 {
 	private eventsURL = "http://192.168.0.11:8000/api/events/events";
 	private headers = new Headers( { "Content-Type": "application/json" } );
-	city: string;
+	cityId: number;
+	events: Event[];
+	eventsFilter: Event[];
 
 	constructor( private http: Http ){}
 

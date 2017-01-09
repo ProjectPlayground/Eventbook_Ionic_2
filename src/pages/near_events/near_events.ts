@@ -15,6 +15,7 @@ import { FilterPage } from "../filter_options/filter_options";
 export class NearEventsPage
 {
 	map: any;
+	markers = new Array();
 	latLng: any;
 	modal: any;
 
@@ -26,9 +27,29 @@ export class NearEventsPage
 		} );
 	}
 
+	drawMarkers()
+	{
+		this.setMapOnAll( null );
+		this.markers = new Array();
+
+		let events = this.eventService.eventsFilter;
+		for( let i = 0; i < events.length; ++i ) 
+		{
+			let position = new google.maps.LatLng( events[i].latitude, events[i].longitude );
+			this.setMarker( position );
+		}
+
+		this.setMapOnAll( this.map );
+		this.setInfoWindowOnAll();
+	}
+
 	openFilterOptions()
 	{
 		this.modal = this.modalCtrl.create( FilterPage );
+		this.modal.onDidDismiss( events => {
+			this.eventService.eventsFilter = events;
+			this.drawMarkers();
+		} );
 		this.modal.present();
 	}
 
@@ -48,14 +69,27 @@ export class NearEventsPage
 	{
 		let marker = new google.maps.Marker(
 		{
-			map: this.map,
 			animation: google.maps.Animation.DROP,
 			position: position
 		} );
+
+		this.markers.push( marker );
+	}
+
+	setInfoWindowOnAll()
+	{
+		for( let i = 0; i < this.markers.length; ++i )
+		{
+			let content = "<h4>Information!</h4>";          
  
-		let content = "<h4>Information!</h4>";          
- 
-		this.addInfoWindow( marker, content );
+			this.addInfoWindow( this.markers[i], content );
+		}
+	}
+
+	setMapOnAll( map )
+	{
+		for( let i = 0; i < this.markers.length; ++i )
+			this.markers[i].setMap( map );
 	}
 
 	loadMap()
@@ -70,7 +104,7 @@ export class NearEventsPage
 			tilt: 30
 		} );
 
-		let marker = new google.maps.Marker(
+		new google.maps.Marker(
 		{
 			position: this.latLng,
 			icon: "assets/images/blue-circle.png",
@@ -82,12 +116,22 @@ export class NearEventsPage
 			google.maps.event.trigger( mapElement, "resize" );
 
 			let positionCoords = { latitude: this.latLng.lat(), longitude: this.latLng.lng() };
-			this.eventService.getEvents( positionCoords ).then( response => { 
+			this.eventService.getEvents( positionCoords ).then( response => {
+				let events = new Array();
+
 				for( let i = 0; i < response.events.length; ++i ) 
-				{ 
-					let position = new google.maps.LatLng( response.events[i].latitude, response.events[i].longitude ); 
-					this.setMarker( position ); 
-				} 
+				{
+					let event = new Event( response.events[i] );
+					events.push( event );
+					let position = new google.maps.LatLng( event.latitude, event.longitude );
+					this.setMarker( position );
+				}
+
+				this.setMapOnAll( this.map );
+				this.setInfoWindowOnAll();
+
+				this.eventService.events = events;
+				this.eventService.eventsFilter = events;
 			} ).catch( response =>
 			{
 
