@@ -8,6 +8,7 @@ export class Event
 	private id: number;
 	private name: string;
 	private type: string;
+	private description: string;
 	private startDateTime: Date;
 	private finishDateTime: Date;
 	private latitude: number;
@@ -19,6 +20,7 @@ export class Event
 		this.id = event.id;
 		this.name = event.name;
 		this.type = event.type;
+		this.description = event.description;
 		this.startDateTime = event.startDateTime;
 		this.finishDateTime = event.finishDateTime;
 		this.latitude = event.latitude;
@@ -39,6 +41,11 @@ export class Event
 	public getType(): string
 	{
 		return this.type;
+	}
+
+	public getDescription(): string
+	{
+		return this.description;
 	}
 
 	public getStartDateTime(): Date
@@ -101,6 +108,7 @@ export class EventService
 
 	public getCity( cityId: number ): Promise<any>
 	{
+		this.cityId = cityId;
 		let url = `${this.cityURL}?id=${cityId}`;
 
 		return this.http.get( url, { headers: this.headers } ).toPromise()

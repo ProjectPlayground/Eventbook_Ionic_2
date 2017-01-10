@@ -22,6 +22,7 @@
 	{
 		"TITLE": "Eventos cercanos",
 		"FILTER": "Filtrar",
+		"GETTING_EVENTS": "Obteniendo eventos...",
 		"FILTERING_EVENTS": "Filtrando eventos..."
 	},
 	"FILTER_OPTIONS":

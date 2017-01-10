@@ -19,6 +19,7 @@ export class NearEventsPage
 	currentPosition: google.maps.LatLng;
 	currentPositionMarker: google.maps.Marker;
 	modal: any;
+	loadingEvents: any;
 
 	filterOptions = { types: true, distance: true, date: true };
 	eventDate: string = new Date().toISOString();
@@ -67,6 +68,12 @@ export class NearEventsPage
 	{
 		this.platform.ready().then( () => 
 		{
+			this.loadingEvents = this.loadingCtrl.create(
+			{
+				content: this.translateService.translate( "NEAR_EVENTS.GETTING_EVENTS" )
+			} );
+			this.loadingEvents.present();
+			
 			this.getPosition();
 		} );
 	}
@@ -131,6 +138,8 @@ export class NearEventsPage
 
 				this.eventService.setLocalEvents( events );
 				this.eventService.setLocalEventsFilter( events );
+
+				this.loadingEvents.dismiss();
 			} ).catch( response =>
 			{
 				let alert = this.alertCtrl.create(

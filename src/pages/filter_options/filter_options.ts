@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-
 import { Platform, NavParams, ViewController } from "ionic-angular";
 
 import { EventService } from "../../services/event.service";

@@ -7,5 +7,15 @@
 </ion-header>
 
 <ion-content padding>
-
+	<ion-card *ngFor = "let event of events">
+		<img src = "assets/images/nin-live.png"/>
+		<ion-card-content>
+			<ion-card-title>
+				{{ event.getName() }}
+			</ion-card-title>
+			<p>
+				{{ event.getDescription() }}
+			</p>
+		</ion-card-content>
+	</ion-card>
 </ion-content>

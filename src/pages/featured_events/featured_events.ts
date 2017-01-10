@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
+import { Platform, NavController } from "ionic-angular";
 
-import { NavController } from "ionic-angular";
+import { Event, EventService } from "../../services/event.service";
 
 @Component(
 {
@@ -10,8 +11,14 @@ import { NavController } from "ionic-angular";
 
 export class FeaturedEventsPage
 {
-	constructor( public navCtrl: NavController )
+	private events: Array<Event>;
+	
+	constructor( public navCtrl: NavController, private platform: Platform,
+		private eventService: EventService )
 	{
-
+		this.platform.ready().then( () => 
+		{
+			this.events = this.eventService.getLocalEvents();
+		} );
 	}
 }
