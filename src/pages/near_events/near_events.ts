@@ -99,6 +99,7 @@ export class NearEventsPage
 			this.eventService.getEvents( currentPosition ).then( response => 
 			{
 				let events = new Array();
+				let cityId: number;
 
 				for( let i = 0; i < response.events.length; ++i )
 				{
@@ -107,7 +108,23 @@ export class NearEventsPage
 					
 					let position = new google.maps.LatLng( event.getLatitude(), event.getLongitude() );
 					this.setMarker( position );
+
+					cityId = event.getCityId();
 				}
+
+				this.eventService.getCity( cityId ).then( response => 
+				{
+					this.eventService.setLocalCity( response.city );
+				} ).catch( response => 
+				{
+					let alert = this.alertCtrl.create(
+					{
+						title: this.translateService.translate( "ERROR.TITLE" ),
+						subTitle: this.translateService.translate( "ERROR.CONNECTION" ),
+						buttons: [this.translateService.translate( "ERROR.OK" )]
+					} );
+					alert.present();
+				} );
 
 				this.setMapOnMarkers( this.map );
 				this.setInfoWindowOnMarkers();

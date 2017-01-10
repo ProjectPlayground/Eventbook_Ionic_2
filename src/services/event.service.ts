@@ -60,12 +60,19 @@ export class Event
 	{
 		return this.longitude;
 	}
+
+	public getCityId(): number
+	{
+		return this.cityId;
+	}
 }
 
 @Injectable()
 export class EventService
 {
-	private eventsURL = "http://192.168.0.11:8000/api/events/events";
+	private serverURL = "http://192.168.0.11:8000/";
+	private eventsURL = this.serverURL + "api/events/events";
+	private cityURL = this.serverURL + "api/events/city";
 	private headers = new Headers( { "Content-Type": "application/json" } );
 	private cityId: number;
 	private city: string;
@@ -86,6 +93,15 @@ export class EventService
 	public getEvents( position: any ): Promise<any>
 	{
 		let url = `${this.eventsURL}?latitude=${position.latitude}&longitude=${position.longitude}`;
+
+		return this.http.get( url, { headers: this.headers } ).toPromise()
+			.then( response => response.json() )
+			.catch( this.handleError );
+	}
+
+	public getCity( cityId: number ): Promise<any>
+	{
+		let url = `${this.cityURL}?id=${cityId}`;
 
 		return this.http.get( url, { headers: this.headers } ).toPromise()
 			.then( response => response.json() )
@@ -115,5 +131,10 @@ export class EventService
 	public setLocalEventsFilter( events: Event[] ): void
 	{
 		this.eventsFilter = events;
+	}
+
+	public setLocalCity( city: string ): void
+	{
+		this.city = city;
 	}
 }
