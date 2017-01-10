@@ -21,7 +21,8 @@
 	"NEAR_EVENTS":
 	{
 		"TITLE": "Eventos cercanos",
-		"FILTER": "Filtrar"
+		"FILTER": "Filtrar",
+		"FILTERING_EVENTS": "Filtrando eventos..."
 	},
 	"FILTER_OPTIONS":
 	{
