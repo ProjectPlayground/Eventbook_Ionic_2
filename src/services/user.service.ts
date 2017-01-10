@@ -7,11 +7,11 @@ import { Event } from "./event.service";
 
 export class User
 {
-	id: number;
-	name: string;
-	lastName: string;
-	email: string;
-	events: Event[];
+	private id: number;
+	private name: string;
+	private lastName: string;
+	private email: string;
+	private events: Event[];
 
 	constructor( id: number, name: string, lastName: string, email: string, events: Event[] )
 	{
@@ -26,12 +26,16 @@ export class User
 @Injectable()
 export class UserService
 {
-	private loginURL = "http://192.168.0.11:8000/api/users/user";
-	private signinURL = "http://192.168.0.11:8000/api/users/add-user";
+	private serverURL = "http://192.168.0.11:8000/";
+	private loginURL = this.serverURL + "api/users/user";
+	private signinURL = this.serverURL + "api/users/add-user";
 	private headers = new Headers( { "Content-Type": "application/json" } );
-	currentUser: User;
+	private currentUser: User;
 
-	constructor( private http: Http ){}
+	constructor( private http: Http )
+	{
+
+	}
 
 	private handleError( error: any ): Promise<any>
 	{
@@ -39,22 +43,27 @@ export class UserService
 		return Promise.reject( error.message || error );
 	}
 
-	login( credentials ): Promise<any>
+	public login( credentials: any ): Promise<any>
 	{
 		return this.http.post( this.loginURL, JSON.stringify( { email: credentials.email, password: credentials.password } ), { headers: this.headers } ).toPromise()
 			.then( response => response.json() )
 			.catch( this.handleError );
 	}
 
-	signin( credentials ): Promise<any>
+	public signin( credentials: any ): Promise<any>
 	{
 		return this.http.post( this.signinURL, JSON.stringify( { name: credentials.name, lastName: credentials.lastName, email: credentials.email, password: credentials.password } ), { headers: this.headers } ).toPromise()
 			.then( response => response.json() )
 			.catch( this.handleError );
 	}
 
-	public getUserInfo() : User
+	public getUserInfo(): User
 	{
 		return this.currentUser;
+	}
+
+	public setUserInfo( user: User ): void
+	{
+		this.currentUser = user;
 	}
 }

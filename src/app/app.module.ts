@@ -14,6 +14,7 @@ import { TabsPage } from "../pages/tabs/tabs";
 
 import { UserService } from "../services/user.service";
 import { EventService } from "../services/event.service";
+import { TranslateServiceLocal } from "../services/translate.service";
 
 export function createTranslateLoader( http: Http )
 {
@@ -52,7 +53,7 @@ export function createTranslateLoader( http: Http )
 		AccountPage,
 		TabsPage
 	],
-	providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserService, EventService]
+	providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler }, UserService, EventService, TranslateServiceLocal]
 } )
 
 export class AppModule {}

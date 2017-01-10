@@ -5,14 +5,14 @@ import "rxjs/add/operator/toPromise";
 
 export class Event
 {
-	id: number;
-	name: string;
-	type: string;
-	startDateTime: Date;
-	finishDateTime: Date;
-	latitude: number;
-	longitude: number;
-	cityId: number;
+	private id: number;
+	private name: string;
+	private type: string;
+	private startDateTime: Date;
+	private finishDateTime: Date;
+	private latitude: number;
+	private longitude: number;
+	private cityId: number;
 
 	constructor( event: any )
 	{
@@ -25,6 +25,41 @@ export class Event
 		this.longitude = event.longitude;
 		this.cityId = event.cityId;
 	}
+
+	public getId(): number
+	{
+		return this.id;
+	}
+
+	public getName(): string
+	{
+		return this.name;
+	}
+
+	public getType(): string
+	{
+		return this.type;
+	}
+
+	public getStartDateTime(): Date
+	{
+		return this.startDateTime;
+	}
+
+	public getFinishDateTime(): Date
+	{
+		return this.finishDateTime;
+	}
+
+	public getLatitude(): number
+	{
+		return this.latitude;
+	}
+
+	public getLongitude(): number
+	{
+		return this.longitude;
+	}
 }
 
 @Injectable()
@@ -32,11 +67,15 @@ export class EventService
 {
 	private eventsURL = "http://192.168.0.11:8000/api/events/events";
 	private headers = new Headers( { "Content-Type": "application/json" } );
-	cityId: number;
-	events: Event[];
-	eventsFilter: Event[];
+	private cityId: number;
+	private city: string;
+	private events: Event[];
+	private eventsFilter: Event[];
 
-	constructor( private http: Http ){}
+	constructor( private http: Http )
+	{
+
+	}
 
 	private handleError( error: any ): Promise<any>
 	{
@@ -44,12 +83,37 @@ export class EventService
 		return Promise.reject( error.message || error );
 	}
 
-	getEvents( position ): Promise<any>
+	public getEvents( position: any ): Promise<any>
 	{
 		let url = `${this.eventsURL}?latitude=${position.latitude}&longitude=${position.longitude}`;
 
 		return this.http.get( url, { headers: this.headers } ).toPromise()
 			.then( response => response.json() )
 			.catch( this.handleError );
+	}
+
+	public getLocalEvents(): Event[]
+	{
+		return this.events;
+	}
+
+	public getLocalEventsFilter(): Event[]
+	{
+		return this.eventsFilter;
+	}
+
+	public getLocalCity(): string
+	{
+		return this.city;
+	}
+
+	public setLocalEvents( events: Event[] ): void
+	{
+		this.events = events;
+	}
+
+	public setLocalEventsFilter( events: Event[] ): void
+	{
+		this.eventsFilter = events;
 	}
 }
