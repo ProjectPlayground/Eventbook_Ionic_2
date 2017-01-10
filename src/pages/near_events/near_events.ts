@@ -142,6 +142,7 @@ export class NearEventsPage
 				this.loadingEvents.dismiss();
 			} ).catch( response =>
 			{
+				this.loadingEvents.dismiss();
 				let alert = this.alertCtrl.create(
 				{
 					title: this.translateService.translate( "ERROR.TITLE" ),
