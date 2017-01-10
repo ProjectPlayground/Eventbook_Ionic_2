@@ -60,7 +60,6 @@ export class LoginPage
 
 	public login()
 	{
-		this.navCtrl.setRoot( TabsPage );
 		if( this.loginForm.valid )
 		{
 			let loading = this.loadingCtrl.create(
