@@ -223,6 +223,8 @@ export class NearEventsPage
 	private isSameDay( eventDate: Date ): boolean
 	{
 		let filterDate = new Date( this.eventDate );
+		console.log( filterDate );
+		console.log( eventDate );
 		if( filterDate.getDate() + 1 === eventDate.getDate() )
 			if( filterDate.getMonth() === eventDate.getMonth() )
 				if( filterDate.getFullYear() === eventDate.getFullYear() )

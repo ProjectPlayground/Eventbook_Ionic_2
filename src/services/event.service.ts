@@ -21,8 +21,8 @@ export class Event
 		this.name = event.name;
 		this.type = event.type;
 		this.description = event.description;
-		this.startDateTime = event.startDateTime;
-		this.finishDateTime = event.finishDateTime;
+		this.startDateTime = new Date( event.startDateTime );
+		this.finishDateTime = new Date( event.finishDateTime );
 		this.latitude = event.latitude;
 		this.longitude = event.longitude;
 		this.cityId = event.cityId;
@@ -56,6 +56,30 @@ export class Event
 	public getFinishDateTime(): Date
 	{
 		return this.finishDateTime;
+	}
+
+	public getShowStartDateTime(): string
+	{
+		let day = this.startDateTime.getDate().toString();
+		let month = ( this.startDateTime.getMonth() + 1 ).toString();
+		let year = this.startDateTime.getFullYear().toString();
+		let hour = this.startDateTime.getHours().toString();
+		let minutes = this.startDateTime.getMinutes().toString();
+		if( this.startDateTime.getMinutes() === 0 )
+			minutes += "0";
+		return day + "/" + month + "/" + year + " - " + hour + ":" + minutes;
+	}
+
+	public getShowFinishDateTime(): string
+	{
+		let day = this.finishDateTime.getDate().toString();
+		let month = ( this.finishDateTime.getMonth() + 1 ).toString();
+		let year = this.finishDateTime.getFullYear().toString();
+		let hour = this.finishDateTime.getHours().toString();
+		let minutes = this.finishDateTime.getMinutes().toString();
+		if( this.finishDateTime.getMinutes() === 0 )
+			minutes += "0";
+		return day + "/" + month + "/" + year + " - " + hour + ":" + minutes;
 	}
 
 	public getLatitude(): number
