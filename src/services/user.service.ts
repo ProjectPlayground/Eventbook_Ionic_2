@@ -26,7 +26,7 @@ export class User
 @Injectable()
 export class UserService
 {
-	private serverURL = "http://192.168.0.11:8000/";
+	private serverURL = "https://apieventbook.herokuapp.com/";
 	private loginURL = this.serverURL + "api/users/user";
 	private signinURL = this.serverURL + "api/users/add-user";
 	private headers = new Headers( { "Content-Type": "application/json" } );

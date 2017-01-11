@@ -77,7 +77,7 @@ export class Event
 @Injectable()
 export class EventService
 {
-	private serverURL = "http://192.168.0.11:8000/";
+	private serverURL = "https://apieventbook.herokuapp.com/";
 	private eventsURL = this.serverURL + "api/events/events";
 	private cityURL = this.serverURL + "api/events/city";
 	private headers = new Headers( { "Content-Type": "application/json" } );
