@@ -11,10 +11,10 @@ import { EventService } from "../../services/event.service";
 
 export class FilterPage
 {
-	eventDate: string;
-	distance: number;
-	typeOptions = new Array();
-	filterOptions: any;
+	private eventDate: string;
+	private distance: number;
+	private typeOptions: Array<any> = [];
+	private filterOptions: any;
 
 	constructor( private platform: Platform, public viewCtrl: ViewController,
 		private params: NavParams, private eventService: EventService )

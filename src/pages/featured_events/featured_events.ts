@@ -11,7 +11,7 @@ import { Event, EventService } from "../../services/event.service";
 
 export class FeaturedEventsPage
 {
-	private events: Array<Event>;
+	private events: Array<Event> = [];
 	
 	constructor( public navCtrl: NavController, private platform: Platform,
 		private eventService: EventService )

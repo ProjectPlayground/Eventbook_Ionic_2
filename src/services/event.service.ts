@@ -107,8 +107,8 @@ export class EventService
 	private headers = new Headers( { "Content-Type": "application/json" } );
 	private cityId: number;
 	private city: string;
-	private events: Event[];
-	private eventsFilter: Event[];
+	private events: Array<Event> = [];
+	private eventsFilter: Array<Event> = [];
 
 	constructor( private http: Http )
 	{
