@@ -45,7 +45,10 @@ export class Event
 
 	public getDescription(): string
 	{
-		return this.description.substring( 0, 101 ) + "...";
+		if( this.description.length >= 100 )
+			return this.description.substring( 0, 101 ) + "...";
+		else
+			return this.description;
 	}
 
 	public getStartDateTime(): Date
