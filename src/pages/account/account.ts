@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
+import { Platform, NavController } from "ionic-angular";
 
-import { NavController } from "ionic-angular";
+import { User, UserService } from "../../services/user.service";
 
 @Component(
 {
@@ -10,8 +11,9 @@ import { NavController } from "ionic-angular";
 
 export class AccountPage
 {
-	constructor( public navCtrl: NavController )
-	{
+	private user: User = this.userService.getUserInfo();
 
+	constructor( public navCtrl: NavController, private userService: UserService )
+	{
 	}
 }

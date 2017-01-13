@@ -21,6 +21,26 @@ export class User
 		this.email = user.email;
 		this.events = user.events;
 	}
+
+	public getName(): string
+	{
+		return this.name;
+	}
+
+	public getLastName(): string
+	{
+		return this.lastName;
+	}
+
+	public getEmail(): string
+	{
+		return this.email;
+	}
+
+	public getEvents(): Event[]
+	{
+		return this.events;
+	}
 }
 
 @Injectable()

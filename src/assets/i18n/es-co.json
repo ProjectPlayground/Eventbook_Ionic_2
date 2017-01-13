@@ -44,7 +44,10 @@
 	},
 	"ACCOUNT":
 	{
-		"TITLE": "Cuenta"
+		"TITLE": "Cuenta",
+		"INFORMATION": "Información",
+		"PAST_EVENTS": "Eventos pasados",
+		"FUTURE_EVENTS": "Eventos futuros"
 	},
 	"WARNING":
 	{
