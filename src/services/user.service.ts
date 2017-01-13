@@ -13,13 +13,13 @@ export class User
 	private email: string;
 	private events: Event[];
 
-	constructor( id: number, name: string, lastName: string, email: string, events: Event[] )
+	constructor( user: any )
 	{
-		this.id = id;
-		this.name = name;
-		this.lastName = lastName;
-		this.email = email;
-		this.events = events;
+		this.id = user.id;
+		this.name = user.name;
+		this.lastName = user.lastName;
+		this.email = user.email;
+		this.events = user.events;
 	}
 }
 

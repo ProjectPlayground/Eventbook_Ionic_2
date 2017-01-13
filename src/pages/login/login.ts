@@ -4,7 +4,8 @@ import { NavController, LoadingController, AlertController, ToastController } fr
 
 import { TabsPage } from "../tabs/tabs";
 import { SigninPage } from "../signin/signin";
-import { UserService } from "../../services/user.service";
+import { User, UserService } from "../../services/user.service";
+import { Event } from "../../services/event.service";
 import { TranslateServiceLocal } from "../../services/translate.service";
 
 @Component(
@@ -87,7 +88,39 @@ export class LoginPage
 			this.userService.login( this.loginForm.value ).then( response => 
 			{
 				if( response.success )
+				{
+					let userAux = response.user;
+					let events: Array<Event> = [];
+					for( let i = 0; i < userAux.events.length; ++i )
+					{
+						let event = 
+						{
+							id: userAux.events[i].id,
+							name: userAux.events[i].name,
+							type: userAux.events[i].type,
+							description: "",
+							startDateTime: userAux.events[i].startDateTime,
+							finishDateTime: userAux.events[i].finishDateTime,
+							latitude: userAux.events[i].latitude,
+							longitude: userAux.events[i].longitude,
+							cityId: 1
+						};
+						events.push( new Event( event ) );
+					}
+
+					let userTemp = 
+					{
+						id: userAux.id,
+						name: userAux.name,
+						lastName: userAux.lastName,
+						email: userAux.email,
+						events: events
+					};
+
+					this.userService.setUserInfo( new User( userTemp ) );
+
 					this.navCtrl.setRoot( TabsPage );
+				}
 				else if( response.error === 2 )
 				{
 					let alert = this.alertCtrl.create(
