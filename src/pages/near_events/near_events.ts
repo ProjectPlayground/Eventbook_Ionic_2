@@ -1,10 +1,11 @@
 import { Component } from "@angular/core";
-import { NavController, Platform, ModalController, LoadingController, AlertController } from "ionic-angular";
+import { App, NavController, Platform, ModalController, LoadingController, AlertController } from "ionic-angular";
 import { Geolocation } from "ionic-native";
 
 import { Event, EventService } from "../../services/event.service";
 import { TranslateServiceLocal } from "../../services/translate.service";
 import { FilterPage } from "../filter_options/filter_options";
+import { LoginPage } from "../login/login";
 
 @Component(
 {
@@ -61,10 +62,10 @@ export class NearEventsPage
 		filter: true,
 	}];
 
-	constructor( public navCtrl: NavController, private platform: Platform,
-		private modalCtrl: ModalController, private loadingCtrl: LoadingController, 
-		private alertCtrl: AlertController, private eventService: EventService, 
-		private translateService: TranslateServiceLocal )
+	constructor( private app: App, public navCtrl: NavController, 
+		private platform: Platform, private modalCtrl: ModalController, 
+		private loadingCtrl: LoadingController, private alertCtrl: AlertController, 
+		private eventService: EventService, private translateService: TranslateServiceLocal )
 	{
 		this.platform.ready().then( () => 
 		{
@@ -310,6 +311,27 @@ export class NearEventsPage
 			loading.dismiss();
 		} );
 		this.modal.present();
+	}
+
+	public logout(): void
+	{
+		let alert = this.alertCtrl.create(
+		{
+			title: this.translateService.translate( "INFO.LOGOUT" ),
+			subTitle: this.translateService.translate( "INFO.LOGOUT_MESSAGE" ),
+			buttons: [
+			{
+				text: this.translateService.translate( "INFO.CANCEL" )
+			},
+			{
+				text: this.translateService.translate( "INFO.OK" ),
+				handler: () => 
+				{
+					this.app.getRootNav().setRoot( LoginPage );
+				}
+			}]
+		} );
+		alert.present();
 	}
 
 	public getPosition(): void

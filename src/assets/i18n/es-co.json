@@ -49,6 +49,13 @@
 		"PAST_EVENTS": "Eventos pasados",
 		"FUTURE_EVENTS": "Eventos futuros"
 	},
+	"INFO":
+	{
+		"LOGOUT": "Cerrar sesión",
+		"LOGOUT_MESSAGE": "¿Estás seguro de que desea cerrar sesión?",
+		"CANCEL": "Cancelar",
+		"OK": "Aceptar"
+	},
 	"WARNING":
 	{
 		"REQUIRED_NAME": "El nombre es necesario",

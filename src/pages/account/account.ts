@@ -1,7 +1,9 @@
 import { Component } from "@angular/core";
-import { NavController } from "ionic-angular";
+import { App, NavController, AlertController } from "ionic-angular";
 
 import { User, UserService } from "../../services/user.service";
+import { TranslateServiceLocal } from "../../services/translate.service";
+import { LoginPage } from "../login/login";
 
 @Component(
 {
@@ -13,7 +15,30 @@ export class AccountPage
 {
 	private user: User = this.userService.getUserInfo();
 
-	constructor( public navCtrl: NavController, private userService: UserService )
+	constructor( private app: App, public navCtrl: NavController, 
+		private alertCtrl: AlertController, private userService: UserService, 
+		private translateService: TranslateServiceLocal )
 	{
+	}
+
+	public logout(): void
+	{
+		let alert = this.alertCtrl.create(
+		{
+			title: this.translateService.translate( "INFO.LOGOUT" ),
+			subTitle: this.translateService.translate( "INFO.LOGOUT_MESSAGE" ),
+			buttons: [
+			{
+				text: this.translateService.translate( "INFO.CANCEL" )
+			},
+			{
+				text: this.translateService.translate( "INFO.OK" ),
+				handler: () => 
+				{
+					this.app.getRootNav().setRoot( LoginPage );
+				}
+			}]
+		} );
+		alert.present();
 	}
 }
