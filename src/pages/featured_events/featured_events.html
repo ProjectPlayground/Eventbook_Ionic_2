@@ -34,6 +34,8 @@
 		</ion-card-content>
 	</ion-card>
 	<ion-refresher (ionRefresh) = "doRefresh( $event )">
-		<ion-refresher-content></ion-refresher-content>
+		<ion-refresher-content
+			pullingText = "{{ 'INFO.PULL_TO_REFRESH' | translate }}"
+			refreshingText = "{{ 'INFO.REFRESHING_EVENTS' | translate }}"></ion-refresher-content>
 	</ion-refresher>
 </ion-content>

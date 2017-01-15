@@ -51,6 +51,8 @@
 	},
 	"INFO":
 	{
+		"PULL_TO_REFRESH": "Baja para actualizar",
+		"REFRESHING_EVENTS": "Actualizando eventos...",
 		"LOGOUT": "Cerrar sesión",
 		"LOGOUT_MESSAGE": "¿Estás seguro de que desea cerrar sesión?",
 		"CANCEL": "Cancelar",
