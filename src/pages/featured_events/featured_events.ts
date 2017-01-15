@@ -52,14 +52,11 @@ export class FeaturedEventsPage
 		this.eventService.getEvents( currentPosition ).then( response => 
 		{
 			let events: Array<Event> = [];
-			let cityId: number;
 
 			for( let i = 0; i < response.events.length; ++i )
 			{
 				let event = new Event( response.events[i] );
 				events.push( event );
-
-				cityId = event.getCityId();
 			}
 
 			this.eventService.setLocalEvents( events );
