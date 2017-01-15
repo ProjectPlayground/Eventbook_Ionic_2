@@ -112,6 +112,7 @@ export class EventService
 	private city: string;
 	private events: Array<Event> = [];
 	private eventsFilter: Array<Event> = [];
+	private position: any;
 
 	constructor( private http: Http )
 	{
@@ -158,6 +159,11 @@ export class EventService
 		return this.city;
 	}
 
+	public getPosition(): any
+	{
+		return this.position;
+	}
+
 	public setLocalEvents( events: Event[] ): void
 	{
 		this.events = events;
@@ -171,5 +177,10 @@ export class EventService
 	public setLocalCity( city: string ): void
 	{
 		this.city = city;
+	}
+
+	public setPosition( position: any ): void
+	{
+		this.position = position;
 	}
 }

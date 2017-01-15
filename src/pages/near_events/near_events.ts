@@ -104,9 +104,10 @@ export class NearEventsPage
 			google.maps.event.trigger( mapElement, "resize" );
 
 			let currentPosition = { latitude: this.currentPosition.lat(), longitude: this.currentPosition.lng() };
+			this.eventService.setPosition( currentPosition );
 			this.eventService.getEvents( currentPosition ).then( response => 
 			{
-				let events = new Array();
+				let events: Array<Event> = [];
 				let cityId: number;
 
 				for( let i = 0; i < response.events.length; ++i )

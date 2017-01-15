@@ -45,4 +45,30 @@ export class FeaturedEventsPage
 		} );
 		alert.present();
 	}
+
+	public doRefresh( refresher: any ): void
+	{
+		let currentPosition = this.eventService.getPosition();
+		this.eventService.getEvents( currentPosition ).then( response => 
+		{
+			let events: Array<Event> = [];
+			let cityId: number;
+
+			for( let i = 0; i < response.events.length; ++i )
+			{
+				let event = new Event( response.events[i] );
+				events.push( event );
+
+				cityId = event.getCityId();
+			}
+
+			this.eventService.setLocalEvents( events );
+
+			this.events = events;
+			refresher.complete();
+		} ).catch( response =>
+		{
+			refresher.complete();
+		} );
+	}
 }
