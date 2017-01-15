@@ -27,6 +27,27 @@
 	<ion-item-divider color = "light">
 		<ion-label>{{ "ACCOUNT.FUTURE_EVENTS" | translate }}</ion-label>
 	</ion-item-divider>
+	<ion-card *ngFor = "let event of user.getEvents()">
+		<img src = "assets/images/nin-live.png"/>
+		<ion-card-content>
+			<ion-card-title>
+				{{ event.getName() }}
+			</ion-card-title>
+
+			<ion-row>
+				<ion-col>
+					{{ event.getShowStartDateTime() }}
+				</ion-col>
+				<ion-col>
+					{{ event.getShowFinishDateTime() }}
+				</ion-col>
+			</ion-row>
+
+			<p>
+				{{ event.getDescription() }}
+			</p>
+		</ion-card-content>
+	</ion-card>
 
 	<ion-item-divider color = "light">
 		<ion-label>{{ "ACCOUNT.PAST_EVENTS" | translate }}</ion-label>

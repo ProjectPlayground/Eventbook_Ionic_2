@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Platform, NavController } from "ionic-angular";
+import { NavController } from "ionic-angular";
 
 import { User, UserService } from "../../services/user.service";
 
