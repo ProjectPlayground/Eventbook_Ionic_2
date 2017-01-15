@@ -13,16 +13,12 @@ import { LoginPage } from "../login/login";
 
 export class FeaturedEventsPage
 {
-	private events: Array<Event> = [];
+	private events: Array<Event> = this.eventService.getLocalEvents();
 	
 	constructor( private app: App, public navCtrl: NavController, 
-		private platform: Platform, private alertCtrl: AlertController, 
-		private eventService: EventService, private translateService: TranslateServiceLocal )
+		private alertCtrl: AlertController, private eventService: EventService, 
+		private translateService: TranslateServiceLocal )
 	{
-		this.platform.ready().then( () => 
-		{
-			this.events = this.eventService.getLocalEvents();
-		} );
 	}
 
 	public logout(): void
