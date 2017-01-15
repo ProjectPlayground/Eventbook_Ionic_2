@@ -98,12 +98,12 @@ export class LoginPage
 							id: userAux.events[i].id,
 							name: userAux.events[i].name,
 							type: userAux.events[i].type,
-							description: "",
+							description: userAux.events[i].description,
 							startDateTime: userAux.events[i].startDateTime,
 							finishDateTime: userAux.events[i].finishDateTime,
 							latitude: userAux.events[i].latitude,
 							longitude: userAux.events[i].longitude,
-							cityId: 1
+							cityId: userAux.events[i].cityId
 						};
 						events.push( new Event( event ) );
 					}
