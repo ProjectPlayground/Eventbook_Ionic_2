@@ -13,6 +13,7 @@ export class Event
 	private finishDateTime: Date;
 	private latitude: number;
 	private longitude: number;
+	private imageURL: string;
 	private cityId: number;
 
 	constructor( event: any )
@@ -25,6 +26,7 @@ export class Event
 		this.finishDateTime = new Date( event.finishDateTime );
 		this.latitude = event.latitude;
 		this.longitude = event.longitude;
+		this.imageURL = event.imageURL;
 		this.cityId = event.cityId;
 	}
 
@@ -93,6 +95,11 @@ export class Event
 	public getLongitude(): number
 	{
 		return this.longitude;
+	}
+
+	public getImageURL(): string
+	{
+		return this.imageURL;
 	}
 
 	public getCityId(): number

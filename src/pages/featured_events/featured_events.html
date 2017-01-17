@@ -13,7 +13,7 @@
 
 <ion-content padding>
 	<ion-card *ngFor = "let event of events">
-		<img src = "assets/images/nin-live.png"/>
+		<img [src] = "event.getImageURL()"/>
 		<ion-card-content>
 			<ion-card-title>
 				{{ event.getName() }}
