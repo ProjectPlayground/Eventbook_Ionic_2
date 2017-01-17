@@ -103,6 +103,7 @@ export class LoginPage
 							finishDateTime: userAux.events[i].finishDateTime,
 							latitude: userAux.events[i].latitude,
 							longitude: userAux.events[i].longitude,
+							imageURL: userAux.events[i].imageURL,
 							cityId: userAux.events[i].cityId
 						};
 						events.push( new Event( event ) );
