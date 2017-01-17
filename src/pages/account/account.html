@@ -33,7 +33,7 @@
 		<ion-label>{{ "ACCOUNT.FUTURE_EVENTS" | translate }}</ion-label>
 	</ion-item-divider>
 	<ion-card *ngFor = "let event of user.getEvents()">
-		<img src = "assets/images/nin-live.png"/>
+		<img [src] = "event.getImageURL()"/>
 		<ion-card-content>
 			<ion-card-title>
 				{{ event.getName() }}
